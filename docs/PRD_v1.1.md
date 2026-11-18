@@ -4,7 +4,7 @@ Sinh bằng `python -m scripts.render_eval_docs` từ report v1. v1.1 bổ sung 
 
 ## 1. Thay đổi so với v1.0
 
-Thay tiêu chí demo thủ công bằng metric/spec có ngưỡng và report có run ID; ánh xạ rủi ro sang failure taxonomy và code grader. Revision generator `156fa15b5212a62fe164600adcdea396954b9a40`.
+Thay tiêu chí demo thủ công bằng metric/spec có ngưỡng và report có run ID; ánh xạ rủi ro sang failure taxonomy và code grader. Revision generator `1388aefc4ea02428ba4f7e83c1f320a3899d25b1`.
 
 ## 2. Phạm vi pilot
 

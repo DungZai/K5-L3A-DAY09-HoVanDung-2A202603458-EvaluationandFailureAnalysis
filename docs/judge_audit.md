@@ -2,7 +2,7 @@
 
 Nguồn: `src/data/eval/judge_tone_public.csv` và
 `src/data/eval/judge_helpful_public.csv`, mỗi tập 100 dòng. Backend là CSV
-replay, không gọi model/API. Run ID **`J-M2-430849a376ce`**;
+replay, không gọi model/API. Run ID **`J-M2-526a9db16ad1`**;
 [kết quả sinh bằng script](m2_judge_evidence.json) chứa ma trận nhầm lẫn,
 bất đồng và SHA-256 của CSV cùng code thống kê/judge.
 
