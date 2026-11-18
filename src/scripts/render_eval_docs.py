@@ -3,6 +3,7 @@
 Run from src/: python -m scripts.render_eval_docs
 An optional v2 section is appended when reports/advanced_evidence.json exists.
 """
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -29,6 +30,10 @@ def main():
     fixed, broken = read("reports/eval_fixed.json"), read("reports/eval_seeded_regression.json")
     judge = read("../docs/m2_judge_evidence.json")
     commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+    dirty = bool(subprocess.check_output(["git", "status", "--porcelain"], text=True).strip())
+    revision = commit + (" + working tree tại thời điểm sinh tài liệu" if dirty else "")
+    fingerprints = {str(path): hashlib.sha256(path.read_text(encoding="utf-8").encode("utf-8")).hexdigest()
+                    for path in map(Path, ("lab9/graders.py", "lab9/stats.py", "lab9/gate.py"))}
     metrics = "| Metric | Ngưỡng trong spec | Blocking | Baseline | Fixed | Regression |\n|---|---|---|---|---|---|\n"
     for metric in spec["metrics"]:
         mid = metric["id"]
@@ -69,7 +74,8 @@ def main():
 Sinh bằng `python -m scripts.render_eval_docs`; số liệu lấy từ report, không nhập tay.
 
 - **Baseline run ID:** `{base['run_id']}`; **eval set SHA:** `{m['eval_set_sha']}`.
-- **Code / grader revision:** `{commit}` (revision chạy generator); report manifest Python `{m['python']}`.
+- **Code / grader revision:** `{revision}`; report manifest Python `{m['python']}`.
+- **SHA-256 source UTF-8/LF:** `{json.dumps(fingerprints)}`.
 - **Eval set:** {m['eval_set']} ({m['items']} item × {len(m['seeds'])} seed), nguồn lab8_public; labels riêng `{spec['labels']}`.
 - **Metric spec:** {spec['metric_spec_version']}; **seeds:** {m['seeds']}.
 - **Gate owner:** {OWNER}.
