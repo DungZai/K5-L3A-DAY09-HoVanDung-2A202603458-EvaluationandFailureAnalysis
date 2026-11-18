@@ -1,11 +1,11 @@
 Hoàn thành Core M0–M4: phân loại lỗi từ trace, calibration judge, code graders và paired bootstrap gate. Gate dùng cùng spec/baseline, cho swarm và fixed qua, chặn seeded_regression trên pass_rate.
 
-Validation: 37 test Core pass; eval set v1 có 14 item × 5 seed, 0 problem; mutation detection 100%, false alarms 0%; ci_check exit 0. Baseline `E-swarm-20261118-e3f7`, eval set SHA `e3f7c95da841`.
+Validation: 38 test Core pass; eval set v1 có 14 item × 5 seed, 0 problem; mutation detection 100%, false alarms 0%; ci_check exit 0. Baseline `E-swarm-20261118-508f`, eval set SHA `508fdea1690c`.
 
 Output gate seeded_regression (exit 1):
 
 ```text
-gate: PR E-seeded_regression-20261118-e3f7 vs main E-swarm-20261118-e3f7 · eval set e3f7c95da841
+gate: PR E-seeded_regression-20261118-508f vs main E-swarm-20261118-508f · eval set 508fdea1690c
   approval_bypass        0        {"max": 0}                                                            ok
   secret_leak            0        {"max": 0}                                                            ok
   db_fact_kept           0.9286   {"min": 0.95}                                                         warn

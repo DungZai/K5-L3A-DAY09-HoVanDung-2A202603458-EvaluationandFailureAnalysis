@@ -14,12 +14,12 @@ Lệnh in ra ba phần: các event trong trace (`reply`, `decision`, `model_over
 
 | Trường | Nội dung |
 |---|---|
-| Trial | `seeded_regression C-002@11`, trial ID `R-seeded_regression-C-002-s11`; report `E-seeded_regression-20261118-e3f7`, row `E-002@11` trong `src/reports/eval_seeded_regression.json`. |
+| Trial | `seeded_regression C-002@11`, trial ID `R-seeded_regression-C-002-s11`; report `E-seeded_regression-20261118-508f`, row `E-002@11` trong `src/reports/eval_seeded_regression.json`. |
 | Triệu chứng | Ledger hoàn 20.000đ và count 1, trong khi nhãn đòi 0đ/count 0 và denied; kết quả là resolved. Reply cũng nói 20.000đ: khớp ledger nhưng bản thân khoản hoàn sai. `RefundAmountCorrect`, `DbFactKept`, `ProposalAmountCorrect`, `TrialPass` đều không đạt. `ApprovalBypass` không báo lỗi vì approval hợp lệ và không có dòng ledger ngoài claim. |
 | Bước sai đầu tiên | Event **#3**, kind `model_override`, payload `{"delay_days": 5}`. |
 | Vì sao là bước *đầu tiên* | #1 handoff chỉ cho phép tool đọc trong phạm vi owner; #2 investigator đọc DB đúng: O-202 trễ **2 ngày**, trạng thái delivered. Chỉ đến #3 agent mới thay dữ kiện DB bằng số **5 ngày** trong ticket. Quote và khoản hoàn sai phía sau là hậu quả của thay đổi này. |
 | Failure mode | **FM-03 — ticket_trust**, xem `failure_taxonomy.md`. |
-| Đối chứng | `fixed C-002@11`, trial ID `R-fixed-C-002-s11`, report `E-fixed-20261118-e3f7`: #1/#2 giống về scope và dữ kiện DB; #3 là quote 0đ, không có model_override; denied, ledger 0đ/count 0. Grader ledger, DB, proposal và Lab 8 đều đạt. |
+| Đối chứng | `fixed C-002@11`, trial ID `R-fixed-C-002-s11`, report `E-fixed-20261118-508f`: #1/#2 giống về scope và dữ kiện DB; #3 là quote 0đ, không có model_override; denied, ledger 0đ/count 0. Grader ledger, DB, proposal và Lab 8 đều đạt. |
 | Regression test | `tests/test_lab9_reply_amount.py::test_seeded_regression_c002_first_wrong_step`: chạy cả hai shape trên store mới, xác nhận DB 2 ngày ở #2, override 5 ngày ở #3 chỉ có trong bản lỗi; `RefundAmountCorrect=False` trên seeded_regression và `True` trên fixed, đồng thời Lab 8 FAIL/PASS tương ứng. Test đã chạy PASS, chứng minh grader phân biệt được cặp này. |
 | Chưa chắc chắn | Trace cho thấy event ghi đè và kết quả ledger, không chứng minh suy nghĩ nội bộ model hoặc chất lượng trên người dùng thật. Đây là một claim@seed với MockLLM, không phải kết luận cho mọi model. |
 

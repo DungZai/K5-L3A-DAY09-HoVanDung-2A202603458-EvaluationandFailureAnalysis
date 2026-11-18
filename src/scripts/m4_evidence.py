@@ -63,7 +63,7 @@ def main() -> None:
     body = (
         "Hoàn thành Core M0–M4: phân loại lỗi từ trace, calibration judge, code graders và paired bootstrap gate. "
         "Gate dùng cùng spec/baseline, cho swarm và fixed qua, chặn seeded_regression trên pass_rate.\n\n"
-        "Validation: 37 test Core pass; eval set v1 có 14 item × 5 seed, 0 problem; "
+        "Validation: 38 test Core pass; eval set v1 có 14 item × 5 seed, 0 problem; "
         "mutation detection 100%, false alarms 0%; ci_check exit 0. "
         f"Baseline `{base['run_id']}`, eval set SHA `{base['manifest']['eval_set_sha']}`.\n\n"
         "Output gate seeded_regression (exit 1):\n\n```text\n"

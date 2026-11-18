@@ -1,0 +1,2 @@
+# Eval-set SHA must refer to identical bytes on Windows and Linux CI.
+src/data/eval/*.jsonl text eol=lf
